@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Regie 💗</title>
+<style>
+:root{--pink:#ffb6cc;--deep:#d94f78;--paper:#fff9f1}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;overflow-x:hidden;font-family:"Trebuchet MS",sans-serif;color:#8b3450;background:radial-gradient(circle at 20% 15%,#ffe9f0,transparent 28%),linear-gradient(135deg,#ffc4d7,#ff9fbe 55%,#ffd9e5);display:flex;align-items:center;justify-content:center;padding:24px 14px}
+.heart{position:fixed;opacity:.45;animation:float 7s ease-in-out infinite;pointer-events:none;font-size:24px}.h1{left:8%;top:14%}.h2{right:9%;top:23%;animation-delay:1s}.h3{left:13%;bottom:15%;animation-delay:2s}.h4{right:13%;bottom:12%;animation-delay:3s}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-22px) rotate(8deg)}}
+.wrap{width:min(100%,430px);text-align:center;position:relative;z-index:1}
+h1{font-size:clamp(2rem,8vw,2.7rem);font-weight:500;margin:0 0 7px;color:#a33e5d}
+.subtitle{margin:0 0 25px;color:#a84b67}
+.envelope-area{height:260px;display:flex;align-items:center;justify-content:center;perspective:900px}
+.envelope{width:min(88vw,340px);height:205px;position:relative;cursor:pointer;filter:drop-shadow(0 14px 14px #bd527044);transition:transform .4s}
+.envelope:hover{transform:translateY(-4px)}
+.env-back{position:absolute;inset:0;background:#ff8fb2;border-radius:8px}
+.env-front{position:absolute;inset:0;background:linear-gradient(145deg,#ffbad0,#ff8fb2);clip-path:polygon(0 100%,0 0,50% 58%,100% 0,100% 100%);border-radius:8px}
+.flap{position:absolute;inset:0;background:linear-gradient(145deg,#ffd3df,#ffabc4);clip-path:polygon(0 0,100% 0,50% 60%);transform-origin:top;transition:transform .8s;z-index:3}
+.seal{position:absolute;z-index:4;left:50%;top:49%;transform:translate(-50%,-50%);font-size:43px;filter:drop-shadow(0 3px 2px #b94a6b55);transition:opacity .3s}
+.tap{margin-top:6px;font-size:1rem;color:#9c3e5a}
+.letter{background:var(--paper);padding:27px 24px 23px;border-radius:5px;box-shadow:0 12px 35px #a8375c25;text-align:left;max-height:0;opacity:0;overflow:hidden;transform:translateY(15px);transition:max-height 1s,opacity .7s,transform .7s;padding-top:0;padding-bottom:0}
+.letter h2{font-family:Georgia,serif;font-weight:normal;margin:0 0 13px;color:#b64464}
+.letter p{line-height:1.7;margin:10px 0;font-size:1rem}
+.signature{text-align:right;font-style:italic;color:#b64464}
+.open .flap{transform:rotateX(180deg);z-index:0}.open .seal{opacity:0}.open .letter{max-height:500px;opacity:1;transform:translateY(0);padding:27px 24px 23px;margin-top:13px}
+button{border:0;border-radius:999px;background:#d94f78;color:white;font-size:1rem;padding:13px 23px;margin-top:18px;box-shadow:0 5px 12px #b53e622c;cursor:pointer}
+button:active{transform:scale(.98)}.hint{font-size:.8rem;opacity:.8;margin-top:18px}
+#surprise{display:none;font-size:1.2rem;color:#b43e63;margin-top:15px;animation:pop .5s ease}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+<div class="heart h1">💗</div><div class="heart h2">♡</div><div class="heart h3">💕</div><div class="heart h4">♡</div>
+<main class="wrap" id="card">
+<h1>A little love letter<br>for you</h1>
+<p class="subtitle">A tiny reminder of how special you are 💞</p>
+<div class="envelope-area">
+<div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open love letter">
+<div class="env-back"></div><div class="flap"></div><div class="env-front"></div><div class="seal">💗</div>
+</div>
+</div>
+<p class="tap" id="tapText">♥ Tap the envelope to open ♥</p>
+<section class="letter" id="letter">
+<h2>Hi Regie, ♡</h2>
+<p>I just want you to know na you mean so much to me. You make my days brighter and my heart happier.</p>
+<p>Thank you for being you, for your efforts, and for making me feel loved. Kahit hindi perfect ang lahat, I’m happy that I have you.</p>
+<p>I’m always cheering for you, and I hope you never forget how special you are to me.</p>
+<p><strong>I love you, always. ❤️</strong></p>
+<p class="signature">— Your girl ♡</p>
+</section>
+<button id="loveBtn" style="display:none">♥ I love you ♥</button>
+<div id="surprise">You + Me = My favorite love story 💖</div>
+<p class="hint">Made with love, just for Regie ✨</p>
+</main>
+<script>
+const card=document.getElementById('card'), envelope=document.getElementById('envelope'), tapText=document.getElementById('tapText'), loveBtn=document.getElementById('loveBtn'), surprise=document.getElementById('surprise');
+function openLetter(){card.classList.add('open');tapText.textContent='A little message, from my heart 💌';loveBtn.style.display='inline-block'}
+envelope.addEventListener('click',openLetter);
+envelope.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLetter()}});
+loveBtn.addEventListener('click',()=>{surprise.style.display='block';for(let i=0;i<12;i++){const h=document.createElement('span');h.textContent=['💗','💕','💖','❤️'][i%4];h.style.cssText=`position:fixed;left:${Math.random()*90+5}%;top:${Math.random()*80+10}%;font-size:24px;z-index:10;pointer-events:none;transition:all 1.8s ease-out`;document.body.appendChild(h);requestAnimationFrame(()=>{h.style.transform=`translateY(-${80+Math.random()*160}px) rotate(${Math.random()*60-30}deg)`;h.style.opacity='0'});setTimeout(()=>h.remove(),1900)}});
+</script>
+</body>
+</html>
